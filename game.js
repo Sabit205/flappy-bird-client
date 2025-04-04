@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         try {
-            const apiUrl = 'http://localhost:3000/api/leaderboard';
+            const apiUrl = 'https://flappy-bird-backend-nw51.onrender.com/api/leaderboard';
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
