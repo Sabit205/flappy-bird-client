@@ -13,8 +13,9 @@
 </head>
 <body>
 
-    <!-- ======== START LEFT AD COLUMN (160x600) - DESKTOP ONLY ======== -->
-    <div id="left-ad-column" class="ad-container">
+    <!-- ======== START AD CONTAINER (160x600 - Top Left Skyscraper) ======== -->
+    <div id="ad-top-left-leaderboard" class="ad-container"> <!-- ID Controls CSS Positioning -->
+        <!-- 160x600 Ad Code -->
         <script type="text/javascript">
             atOptions = {
                 'key' : 'bc35e8a22aeb38a5b9faa44b0b95bb53',
@@ -26,9 +27,39 @@
         </script>
         <script type="text/javascript" src="//www.highperformanceformat.com/bc35e8a22aeb38a5b9faa44b0b95bb53/invoke.js"></script>
     </div>
-    <!-- ======== END LEFT AD COLUMN (160x600) ======== -->
+    <!-- ======== END AD CONTAINER (160x600) ======== -->
 
+    <!-- ======== START AD CONTAINER (300x250 - Top Right Rectangle) ======== -->
+    <div id="ad-top-right-rect" class="ad-container"> <!-- New ID for CSS -->
+         <!-- 300x250 Ad Code -->
+         <script type="text/javascript">
+            atOptions = {
+                'key' : '10d4fd2119affee77a07ba130e5c8942',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/10d4fd2119affee77a07ba130e5c8942/invoke.js"></script>
+    </div>
+    <!-- ======== END AD CONTAINER (300x250) ======== -->
 
+<!-- ======== START AD CONTAINER (300x250 - Top Right Rectangle) ======== -->
+<div id="ad-top-right-rect2" class="ad-container"> <!-- New ID for CSS -->
+    <!-- 300x250 Ad Code -->
+    <script type="text/javascript">
+       atOptions = {
+           'key' : '10d4fd2119affee77a07ba130e5c8942',
+           'format' : 'iframe',
+           'height' : 250,
+           'width' : 300,
+           'params' : {}
+       };
+   </script>
+   <script type="text/javascript" src="//www.highperformanceformat.com/10d4fd2119affee77a07ba130e5c8942/invoke.js"></script>
+</div>
+<!-- ======== END AD CONTAINER (300x250) ======== -->
     <!-- Loading Animation -->
     <div id="loader">
         <div class="spinner"></div>
@@ -37,49 +68,55 @@
 
     <!-- Main Content Area (Hidden until loaded) -->
     <div id="content-wrapper" style="display: none;">
-        <!-- Game Column -->
-        <div id="game-column">
-            <!-- Game Container -->
-            <div id="game-container">
-                <canvas id="gameCanvas"></canvas> <!-- Width/Height set by JS -->
-                <div class="score-container">
-                    <div id="currentScore"></div>
+
+        <!-- This column now just groups the game and info panel for layout -->
+        <div id="main-content-column">
+            <!-- Game Column -->
+            <div id="game-column">
+                <div id="game-container">
+                    <canvas id="gameCanvas"></canvas> <!-- Width/Height set by JS -->
+                    <div class="score-container">
+                        <div id="currentScore"></div>
+                    </div>
+                    <!-- Buttons positioned relative to game-container -->
+                    <img id="leaderboard" src="leaderboard.png" class="game-button" alt="View Leaderboard">
+                    <img id="restartBtn" src="restart.png" class="game-button" alt="Restart Game">
+                    <img id="pauseBtn" src="pause.png" class="game-button" alt="Pause/Resume Game">
+                    <img id="addToLeaderboard" src="add to leaderboard.png" class="game-button" alt="Add Score to Leaderboard">
+                    <!-- Game Over Overlay will be appended here by JS -->
                 </div>
-                <!-- Buttons positioned relative to game-container -->
-                <img id="leaderboard" src="leaderboard.png" class="game-button" alt="View Leaderboard">
-                <img id="restartBtn" src="restart.png" class="game-button" alt="Restart Game">
-                <img id="pauseBtn" src="pause.png" class="game-button" alt="Pause/Resume Game">
-                <img id="addToLeaderboard" src="add to leaderboard.png" class="game-button" alt="Add Score to Leaderboard">
-                <!-- Game Over Overlay will be appended here by JS -->
             </div>
 
-            <!-- ======== START BOTTOM AD CONTAINER (728x90) - DESKTOP ONLY ======== -->
-            <div class="ad-container ad-bottom-banner">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '1998feb14a5c1dc94a31c2a345500fc7',
-                        'format' : 'iframe',
-                        'height' : 90,
-                        'width' : 728,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/1998feb14a5c1dc94a31c2a345500fc7/invoke.js"></script>
+            <!-- Info/Credit Column (Positioning handled by CSS) -->
+            <div id="info-column">
+                <div id="info-panel">
+                    <h2>Flappy Bird</h2>
+                    <p>Play Flappy Bird online for free! Tap the screen or press the spacebar to start. Guide the bird through the pipes and see how far you can go. Try to beat your high score!</p>
+                    <hr>
+                    <p class="credit">Game created by Sabit Hasan</p>
+                </div>
             </div>
-            <!-- ======== END BOTTOM AD CONTAINER (728x90) ======== -->
+        </div> <!-- End main-content-column -->
 
-        </div> <!-- End Game Column -->
+    </div> <!-- End content-wrapper -->
 
-        <!-- Info/Credit Column -->
-        <div id="info-column">
-            <div id="info-panel">
-                <h2>Flappy Bird</h2>
-                <p>Play Flappy Bird online for free! Tap the screen or press the spacebar to start. Guide the bird through the pipes and see how far you can go. Try to beat your high score!</p>
-                <hr>
-                <p class="credit">Game created by Sabit Hasan</p>
-            </div>
-        </div>
-    </div> <!-- End Content Wrapper -->
+
+    <!-- ======== START AD CONTAINER (728x90 - Centered Leaderboard Below) ======== -->
+    <div id="ad-center-skyscraper" class="ad-container"> <!-- ID Controls CSS Positioning -->
+        <!-- 728x90 Ad Code -->
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '1998feb14a5c1dc94a31c2a345500fc7',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/1998feb14a5c1dc94a31c2a345500fc7/invoke.js"></script>
+    </div>
+    <!-- ======== END AD CONTAINER (728x90) ======== -->
+
 
     <!-- Hidden elements managed by JS (positioned fixed) -->
     <div id="leaderboardPanel" style="display: none;"></div>
