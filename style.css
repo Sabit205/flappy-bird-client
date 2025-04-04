@@ -1,0 +1,379 @@
+/* Reset basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    /* Allow scrolling vertically ONLY when needed */
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #222831; /* Dark background */
+    color: #eeeeee; /* Light text */
+}
+
+body {
+    display: flex;
+    justify-content: center; /* Center #content-wrapper horizontally */
+    align-items: center; /* Center #content-wrapper vertically (default for desktop) */
+    min-height: 100vh;
+    padding: 10px;
+}
+
+/* --- Loader Styles --- */
+#loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #222831; /* Match body */
+    z-index: 1000;
+    color: #eeeeee;
+}
+
+.spinner {
+    border: 6px solid #444; /* Darker border */
+    border-top: 6px solid #4CAF50; /* Green accent */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1.5s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loader p {
+    font-size: 1.2em;
+}
+
+/* --- Layout --- */
+/* This wrapper is centered by the body. It acts as a positioning context */
+#content-wrapper {
+    display: flex; /* Use flex to hold game column */
+    justify-content: center; /* Center the game column within */
+    align-items: center; /* Center the game column within */
+    position: relative; /* Needed for absolute positioning of info-column */
+    width: auto; /* Size to game column */
+    /* border: 1px solid blue; */ /* Debugging */
+}
+
+#game-column {
+    flex-shrink: 0; /* Prevent game from shrinking */
+    /* border: 1px solid green; */ /* Debugging */
+}
+
+/* --- Info Column - Positioned Absolutely on Desktop --- */
+#info-column {
+    position: absolute; /* Desktop: Absolute positioning */
+    /* Lower the panel slightly */
+    top: 60px; /* Adjust this value to control vertical offset */
+    left: calc(100% + 40px); /* Position 40px (gap) to the right of the wrapper */
+    width: 300px; /* Explicit width */
+    max-width: 300px;
+    height: auto; /* Adjust height automatically */
+    /* border: 1px solid red; */ /* Debugging */
+    z-index: 10; /* Keep it visually separate if needed */
+}
+
+#game-container {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    overflow: hidden;
+    border: 2px solid #393E46; /* Slightly lighter border */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    background-color: #70c5ce; /* Default canvas bg */
+    border-radius: 4px;
+}
+
+canvas#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 1;
+    image-rendering: pixelated; /* Keep pixels sharp */
+    image-rendering: crisp-edges; /* Broader compatibility */
+}
+
+/* Info Panel - Dark/Green Theme */
+#info-panel {
+    background-color: rgba(57, 62, 70, 0.5); /* Semi-transparent dark */
+    padding: 25px;
+    border-radius: 6px;
+    color: #eeeeee;
+    border: 1px solid #4CAF50; /* Green border */
+    height: auto; /* Height determined by content */
+}
+
+#info-panel h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    color: #4CAF50; /* Green heading */
+    text-align: center;
+    font-size: 1.7em;
+    font-weight: bold;
+}
+
+#info-panel p {
+    line-height: 1.6;
+    margin-bottom: 12px;
+    font-size: 1em;
+}
+
+#info-panel hr {
+    border: 0;
+    height: 1px;
+    background-color: #4CAF50; /* Green separator */
+    opacity: 0.5;
+    margin: 18px 0;
+}
+
+#info-panel .credit {
+    font-size: 0.9em;
+    text-align: center;
+    opacity: 0.8;
+    margin-top: 25px;
+}
+
+/* --- Buttons and Overlays --- */
+.game-button {
+    position: absolute;
+    cursor: pointer;
+    display: none; /* Hidden by default, shown by JS */
+    image-rendering: pixelated; /* Keep pixels sharp */
+    image-rendering: crisp-edges;
+    object-fit: contain;
+    z-index: 4; /* Above canvas, below popups */
+    border: none;
+    background: none;
+    padding: 0; /* Remove default padding */
+    transition: transform 0.1s ease-out, filter 0.1s ease-out;
+}
+.game-button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+.game-button:active { transform: scale(0.97); }
+
+/* Button specific positioning and sizes */
+#leaderboard { top: 15px; left: 15px; width: 110px; height: auto; }
+#pauseBtn { top: 15px; right: 15px; width: 35px; height: auto; }
+#restartBtn { width: 100px; height: auto; /* Positioned by JS */ }
+#addToLeaderboard { width: 170px; height: auto; /* Positioned by JS */ }
+
+/* Score display during gameplay */
+.score-container {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    text-align: center;
+    z-index: 2; /* Above canvas */
+    pointer-events: none; /* Don't interfere with clicks */
+}
+
+.score-digit {
+    width: 24px; /* Match your number image width */
+    height: 36px; /* Match your number image height */
+    margin: 0 1px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Game Over Overlay */
+#gameOverOverlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.15); /* Slight dimming */
+    z-index: 3; /* Above canvas, score container, below buttons */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align content towards bottom (where buttons are) */
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
+    pointer-events: none; /* Overlay itself doesn't block clicks */
+}
+
+/* Container for score/best score within the overlay */
+#gameOverOverlay .score-display-box {
+     text-align: center;
+     /* Position this box relative to the game over image and buttons using margins */
+     margin-top: 180px;  /* Pushes scores down from where the game over image appears */
+     margin-bottom: 170px; /* Provides space above the restart/submit buttons */
+     pointer-events: auto; /* Allow interaction if needed, though not typical */
+     width: auto; /* Size to content */
+}
+
+/* Individual score line (current or best) */
+#gameOverOverlay .score-line {
+    margin-bottom: 16px; /* Space between score and best score */
+    min-height: 36px; /* Ensure consistent height */
+    line-height: 36px;
+    white-space: nowrap; /* Prevent wrapping */
+}
+#gameOverOverlay .score-line:last-child { margin-bottom: 0; } /* No margin on last line */
+
+/* Hide any potential text labels if only using images */
+#gameOverOverlay .score-line span { display: none; }
+
+/* Style the number images within the game over overlay */
+#gameOverOverlay img.score-digit {
+     width: 24px; height: 36px; margin: 0 2px; /* Slightly more spacing */
+     image-rendering: pixelated;
+     image-rendering: crisp-edges;
+     display: inline-block;
+     vertical-align: middle;
+}
+
+/* --- Popups (Fixed Positioning) --- */
+/* Name Input Popup - Dark/Green Theme */
+#nameInput {
+    display: none; /* Hidden by default */
+    position: fixed;
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+    background: #393E46; /* Dark background */
+    padding: 30px;
+    color: #eeeeee;
+    border-radius: 8px; text-align: center; z-index: 5; /* Above game elements */
+    width: 90%; max-width: 320px;
+    border: 1px solid #4CAF50; /* Green border */
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.5);
+}
+#nameInput input[type="text"] {
+    margin: 18px 0; padding: 12px; width: 90%;
+    border: 1px solid #555;
+    border-radius: 4px; font-size: 1.1em;
+    background-color: #222831; /* Darker input */
+    color: #eee;
+}
+#nameInput input[type="text"]::placeholder { color: #aaa; }
+#nameInput button {
+    background: #4CAF50; /* Green button */
+    border: none;
+    padding: 12px 25px; color: white;
+    cursor: pointer; border-radius: 4px; margin-top: 10px; font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+#nameInput button:hover { background-color: #45a049; }
+
+
+/* --- Toast Notification --- Dark/Green Theme */
+#toast-notification {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+    padding: 12px 25px;
+    color: #fff;
+    border-radius: 5px;
+    z-index: 1001; /* Above everything */
+    font-size: 1em; opacity: 0; /* Start hidden */
+    transition: opacity 0.4s ease; text-align: center;
+    pointer-events: none; /* Cannot interact with toast */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+#toast-notification.success { background-color: #4CAF50; }
+#toast-notification.error { background-color: #d9534f; } /* Red for errors */
+
+
+/* --- Responsive Adjustments --- */
+/* Styles ONLY for smaller screens (mobile/tablet portrait) */
+@media (max-width: 900px) { /* Adjust this breakpoint if needed */
+    body {
+        /* Align content wrapper to top on mobile */
+        align-items: flex-start;
+        /* Adjust padding for smaller screens */
+        padding: 15px 10px;
+    }
+
+    #content-wrapper {
+        /* Switch to vertical stacking */
+        flex-direction: column;
+        /* Center the stacked columns horizontally */
+        align-items: center;
+        /* Remove relative positioning context */
+        position: static;
+        /* Gap between stacked items */
+        gap: 25px;
+        /* Allow wrapper to take necessary width, centered by body */
+        width: auto; /* Changed from 100% */
+        max-width: 95%; /* Limit max width to prevent touching edges */
+        padding: 10px 0; /* Adjust padding */
+    }
+
+    #info-column {
+        /* Revert to normal document flow */
+        position: static;
+        /* Reset desktop positioning */
+        top: auto;
+        left: auto;
+        margin-top: 0; /* Remove desktop margin */
+        /* Set width relative to parent */
+        width: 100%; /* Take width of the centered wrapper */
+        max-width: 400px; /* Limit max width (same as game container max) */
+        /* Ensure it stacks below the game */
+        order: 2;
+    }
+
+    #game-column {
+        order: 1; /* Ensure game comes first */
+        width: auto; /* Size to its content (game-container) */
+        /* flexbox centering already on #content-wrapper will center this */
+    }
+
+    #game-container {
+         /* Adjust game container size for smaller viewports */
+         width: 90vw; /* 90% of viewport width */
+         height: calc(90vw * 1.5); /* Maintain 1:1.5 aspect ratio */
+         max-width: 400px; /* But don't exceed original desktop width */
+         max-height: 600px; /* Or original height */
+    }
+}
+
+/* Further adjustments for very small screens (phones) */
+@media (max-width: 480px) {
+     #game-container {
+        width: 95vw; /* Use slightly more width on very small screens */
+        height: calc(95vw * 1.5);
+        /* Reduce max size slightly if needed, or keep as is */
+        max-width: 340px;
+        max-height: 510px;
+     }
+      #info-column {
+         /* Ensure info column width doesn't exceed game width */
+         max-width: 95vw; /* Match game width */
+         width: 100%; /* Still takes width of its container */
+     }
+     #info-panel h2 { font-size: 1.5em; }
+     #info-panel p { font-size: 0.9em; }
+
+     /* Adjust game over box positioning for smaller canvas */
+     #gameOverOverlay .score-display-box {
+        padding: 0;
+        margin-top: 28%; /* Use percentage for better scaling */
+        margin-bottom: 28%;/* Use percentage for better scaling */
+     }
+     #gameOverOverlay .score-line { margin-bottom: 10px; } /* Reduce spacing */
+
+     /* Slightly scale down buttons on smallest screens */
+     .game-button { transform: scale(0.9); }
+     .game-button:hover { transform: scale(0.95); } /* Adjust hover scale too */
+}
