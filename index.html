@@ -5,8 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flappy Bird</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon Links -->
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
 </head>
 <body>
+
+    <!-- ======== START AD CONTAINER (728x90) ======== -->
+    <div class="ad-container ad-leaderboard-top">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '1998feb14a5c1dc94a31c2a345500fc7',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/1998feb14a5c1dc94a31c2a345500fc7/invoke.js"></script>
+    </div>
+    <!-- ======== END AD CONTAINER (728x90) ======== -->
+
+
     <!-- Loading Animation -->
     <div id="loader">
         <div class="spinner"></div>
@@ -18,14 +40,16 @@
         <!-- Game Column -->
         <div id="game-column">
             <div id="game-container">
-                <canvas id="gameCanvas"></canvas>
+                <canvas id="gameCanvas"></canvas> <!-- Width/Height set by JS -->
                 <div class="score-container">
                     <div id="currentScore"></div>
                 </div>
+                <!-- Buttons positioned relative to game-container -->
                 <img id="leaderboard" src="leaderboard.png" class="game-button" alt="View Leaderboard">
                 <img id="restartBtn" src="restart.png" class="game-button" alt="Restart Game">
                 <img id="pauseBtn" src="pause.png" class="game-button" alt="Pause/Resume Game">
                 <img id="addToLeaderboard" src="add to leaderboard.png" class="game-button" alt="Add Score to Leaderboard">
+                <!-- Game Over Overlay will be appended here by JS -->
             </div>
         </div>
 
@@ -40,7 +64,7 @@
         </div>
     </div>
 
-    <!-- Hidden elements -->
+    <!-- Hidden elements managed by JS (positioned fixed) -->
     <div id="leaderboardPanel" style="display: none;"></div>
     <div id="nameInput" style="display: none;">
         <input type="text" placeholder="Your name" id="playerName" maxlength="15">
