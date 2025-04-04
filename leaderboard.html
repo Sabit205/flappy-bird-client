@@ -10,84 +10,104 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #222831; /* Dark background */
             color: #eeeeee; /* Light text */
-            padding: 20px;
+            padding: 20px; /* Default padding */
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            box-sizing: border-box; /* Include padding in width/height calculation */
         }
-        #leaderboardContainer {
+
+        /* New Wrapper for Ads and Leaderboard */
+        #page-wrapper {
+            display: flex;
+            justify-content: center; /* Center items horizontally */
+            align-items: flex-start; /* Align tops of items */
+            gap: 20px; /* Space between items */
             width: 100%;
-            max-width: 550px; /* Slightly wider */
-            margin: 20px auto;
-            background: #393E46; /* Darker element background */
-            padding: 30px 35px;
-            border-radius: 8px;
-            border: 1px solid #4CAF50; /* Green border */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            /* Max width approx: 300(ad)+20(gap)+550(lead)+20(gap)+300(ad) = 1190px */
+            max-width: 1190px;
+            margin: 20px auto; /* Vertical margin, horizontal centering */
+            /* border: 1px dashed yellow; */ /* Debug */
         }
+
+        /* Ad Container Base Styles */
+        .ad-container {
+            width: 300px;
+            height: 250px;
+            min-height: 250px; /* Reserve space */
+            background-color: #333; /* Placeholder bg */
+            border: 1px solid #444; /* Placeholder border */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            flex-shrink: 0; /* Prevent ads from shrinking */
+            line-height: 0; /* Prevent extra space */
+             /* border: 1px dotted red; */ /* Debug */
+        }
+
+        /* NEW: Wrapper for Leaderboard + Button */
+        #leaderboard-block {
+            display: flex;
+            flex-direction: column; /* Stack leaderboard and button vertically */
+            align-items: center; /* Center button below leaderboard */
+            width: 100%; /* Take available width within its flex item space */
+            max-width: 550px; /* Match leaderboard width */
+            gap: 30px; /* Space between leaderboard and button */
+             /* border: 1px dashed cyan; */ /* Debug */
+        }
+
+        /* Leaderboard container adjustments */
+        #leaderboardContainer {
+            width: 100%; /* Takes width of parent #leaderboard-block */
+            max-width: 550px; /* Still respects its own max-width */
+            margin: 0; /* No margin needed, parent handles layout */
+            background: #393E46;
+            padding: 30px 35px; /* Default padding */
+            border-radius: 8px;
+            border: 1px solid #4CAF50;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+
         h1 {
             text-align: center;
-            color: #4CAF50; /* Green heading */
+            color: #4CAF50;
             margin-bottom: 30px;
-            font-size: 2.2em;
+            font-size: 2.2em; /* Default size */
             letter-spacing: 1px;
         }
         .entry {
             margin-bottom: 12px;
-            padding: 10px 15px; /* Add padding to entry */
-            border-bottom: 1px solid rgba(76, 175, 80, 0.3); /* Fainter green separator */
+            padding: 10px 15px; /* Default padding */
+            border-bottom: 1px solid rgba(76, 175, 80, 0.3);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 1.15em;
+            font-size: 1.15em; /* Default size */
             transition: background-color 0.2s ease;
-            border-radius: 4px; /* Rounded corners for hover effect */
+            border-radius: 4px;
         }
-        .entry:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-        .entry:hover {
-            background-color: rgba(76, 175, 80, 0.15); /* Light green tint on hover */
-        }
-        .rank {
-            font-weight: bold;
-            min-width: 40px;
-            color: #ccc;
-            text-align: right;
-            margin-right: 15px;
-        }
-        .name {
-            flex-grow: 1;
-            margin: 0 10px;
-            white-space: pre;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: #eee;
-        }
-        .score {
-            font-weight: bold;
-            color: #eee;
-            min-width: 50px;
-            text-align: right;
-        }
-        .loading, .error {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 1.1em;
-            color: #aaa;
-        }
-        .error {
-            color: #f88; /* Keep error red noticeable */
-        }
+        .entry:last-child { border-bottom: none; margin-bottom: 0; }
+        .entry:hover { background-color: rgba(76, 175, 80, 0.15); }
+        .rank { font-weight: bold; min-width: 40px; color: #ccc; text-align: right; margin-right: 15px; flex-shrink: 0; }
+        .name { flex-grow: 1; margin: 0 10px; white-space: pre; overflow: hidden; text-overflow: ellipsis; color: #eee; }
+        .score { font-weight: bold; color: #eee; min-width: 50px; text-align: right; flex-shrink: 0; }
+        .loading, .error { text-align: center; margin-top: 30px; font-size: 1.1em; color: #aaa; }
+        .error { color: #f88; }
+
+        /* Back button styling */
         a.back-button {
-            display: block; /* Make it block for centering */
-            width: fit-content; /* Size to content */
-            margin: 30px auto 0 auto; /* Center horizontally */
+            display: block;
+            width: fit-content;
+            /* Remove top margin, parent wrapper gap handles spacing */
+            /* Keep auto horizontal margins for centering within parent */
+            margin: 0 auto;
             padding: 12px 25px;
-            background-color: #4CAF50; /* Green button */
+            background-color: #4CAF50;
             border: none;
             color: white;
             text-decoration: none;
@@ -95,31 +115,122 @@
             transition: background-color 0.2s ease;
             font-size: 1.1em;
             font-weight: bold;
+            flex-shrink: 0;
         }
-        a.back-button:hover {
-            background-color: #45a049; /* Darker green */
+        a.back-button:hover { background-color: #45a049; }
+
+        /* ===== RESPONSIVE ADJUSTMENTS ===== */
+
+        /* Tablet / Smaller Desktop - Stack page-wrapper items */
+        @media (max-width: 1250px) {
+            #page-wrapper {
+                flex-direction: column; /* Stack items vertically */
+                align-items: center; /* Center items horizontally */
+                /* Max-width will be controlled by #leaderboard-block now */
+                max-width: 100%;
+                gap: 25px; /* Vertical gap */
+            }
+
+            /* Define order for stacking: Leaderboard Block -> Ad -> Ad */
+            /* The button is inside leaderboard-block, so its order relative */
+            /* to the leaderboard is fixed by that block's flex-direction */
+            #leaderboard-block { order: 1; max-width: 550px; /* Ensure it doesn't stretch */ }
+            #ad-left-rect { order: 2; }
+            #ad-right-rect { order: 3; }
+
+             .ad-container { max-width: 100%; }
+
+             /* Adjust gap inside leaderboard block if needed */
+             #leaderboard-block { gap: 25px; }
+             /* Adjust button margin if needed */
+             a.back-button { /* No specific change needed here now */ }
         }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            #page-wrapper { max-width: 100%; }
+             #leaderboard-block { max-width: 100%; } /* Allow block to shrink */
+             #leaderboardContainer { padding: 20px 15px; }
+            h1 { font-size: 1.8em; margin-bottom: 20px; }
+            .entry { font-size: 1em; padding: 8px 10px; margin-bottom: 8px; }
+            .rank { min-width: 30px; margin-right: 10px; }
+            .name { margin: 0 8px; }
+            .score { min-width: 40px; }
+             a.back-button { font-size: 1em; padding: 10px 20px; }
+             .ad-container { /* No changes */ }
+        }
+         @media (max-width: 400px) {
+             h1 { font-size: 1.6em; }
+             .entry { font-size: 0.9em; padding: 6px 8px; }
+             .rank { min-width: 25px; margin-right: 8px; }
+             .name { margin: 0 5px; }
+             .score { min-width: 35px; }
+             .ad-container { width: 95%; }
+         }
 
     </style>
 </head>
 <body>
-    <div id="leaderboardContainer">
-        <h1>Leaderboard</h1>
-        <div id="leaderboardContent">
-            <p class="loading">Loading scores...</p>
-        </div>
-    </div>
 
-    <!-- Centered Back Button -->
-    <a href="index.html" class="back-button">Back to Game</a>
+    <!-- Page Wrapper for Ad/Leaderboard Layout -->
+    <div id="page-wrapper">
+
+        <!-- Left Ad Container -->
+        <div id="ad-left-rect" class="ad-container">
+             <script type="text/javascript">
+                atOptions = {
+                    'key' : '10d4fd2119affee77a07ba130e5c8942',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/10d4fd2119affee77a07ba130e5c8942/invoke.js"></script>
+        </div>
+
+        <!-- NEW: Wrapper for Leaderboard and Button -->
+        <div id="leaderboard-block">
+            <!-- Leaderboard Container (Now inside the block) -->
+            <div id="leaderboardContainer">
+                <h1>Leaderboard</h1>
+                <div id="leaderboardContent">
+                    <p class="loading">Loading scores...</p>
+                </div>
+            </div>
+
+            <!-- Back Button (Now inside the block) -->
+            <a href="index.html" class="back-button">Back to Game</a>
+        </div> <!-- End leaderboard-block -->
+
+
+        <!-- Right Ad Container -->
+        <div id="ad-right-rect" class="ad-container">
+             <script type="text/javascript">
+                atOptions = {
+                    'key' : '10d4fd2119affee77a07ba130e5c8942',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/10d4fd2119affee77a07ba130e5c8942/invoke.js"></script>
+        </div>
+
+    </div> <!-- End Page Wrapper -->
+
+
+    <!-- Back button is now contained within leaderboard-block -->
+
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const contentDiv = document.getElementById('leaderboardContent');
             try {
-                // *** Use the correct FULL URL or ensure relative path works ***
                 // const apiUrl = '/api/leaderboard'; // Relative if served by same Node server
-                const apiUrl = 'https://flappy-bird-backend-nw51.onrender.com/api/leaderboard'; // Absolute URL
+                const apiUrl = 'http://localhost:3000/api/leaderboard'; // Absolute URL
                 const response = await fetch(apiUrl);
 
                 if (!response.ok) {
@@ -141,11 +252,17 @@
                          if (b.score !== a.score) { return b.score - a.score; }
                          return new Date(a.date) - new Date(b.date);
                     });
-                    data.forEach((entry, index) => {
+
+                    // --- CHANGE START: Get only top 20 scores ---
+                    const topScores = data.slice(0, 20);
+                    // --- CHANGE END ---
+
+                    // --- CHANGE START: Loop over topScores instead of data ---
+                    topScores.forEach((entry, index) => {
+                    // --- CHANGE END ---
                         const rank = index + 1;
-                        // Basic sanitization and padding
                         const safeName = (entry.name || 'Anonymous').replace(/</g, "<").replace(/>/g, ">").replace(/&/g, "&");
-                        const displayName = safeName.padEnd(15, '\u00A0').substring(0, 15); // Use non-breaking space for padding
+                        const displayName = safeName.substring(0, 15); // Truncate name
                         html += `<div class="entry">
                                     <span class="rank">${rank}.</span>
                                     <span class="name">${displayName}</span>
