@@ -13,20 +13,20 @@
 </head>
 <body>
 
-    <!-- ======== START AD CONTAINER (728x90) ======== -->
-    <div class="ad-container ad-leaderboard-top">
+    <!-- ======== START LEFT AD COLUMN (160x600) - DESKTOP ONLY ======== -->
+    <div id="left-ad-column" class="ad-container">
         <script type="text/javascript">
             atOptions = {
-                'key' : '1998feb14a5c1dc94a31c2a345500fc7',
+                'key' : 'bc35e8a22aeb38a5b9faa44b0b95bb53',
                 'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
+                'height' : 600,
+                'width' : 160,
                 'params' : {}
             };
         </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/1998feb14a5c1dc94a31c2a345500fc7/invoke.js"></script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/bc35e8a22aeb38a5b9faa44b0b95bb53/invoke.js"></script>
     </div>
-    <!-- ======== END AD CONTAINER (728x90) ======== -->
+    <!-- ======== END LEFT AD COLUMN (160x600) ======== -->
 
 
     <!-- Loading Animation -->
@@ -39,6 +39,7 @@
     <div id="content-wrapper" style="display: none;">
         <!-- Game Column -->
         <div id="game-column">
+            <!-- Game Container -->
             <div id="game-container">
                 <canvas id="gameCanvas"></canvas> <!-- Width/Height set by JS -->
                 <div class="score-container">
@@ -51,7 +52,23 @@
                 <img id="addToLeaderboard" src="add to leaderboard.png" class="game-button" alt="Add Score to Leaderboard">
                 <!-- Game Over Overlay will be appended here by JS -->
             </div>
-        </div>
+
+            <!-- ======== START BOTTOM AD CONTAINER (728x90) - DESKTOP ONLY ======== -->
+            <div class="ad-container ad-bottom-banner">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '1998feb14a5c1dc94a31c2a345500fc7',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/1998feb14a5c1dc94a31c2a345500fc7/invoke.js"></script>
+            </div>
+            <!-- ======== END BOTTOM AD CONTAINER (728x90) ======== -->
+
+        </div> <!-- End Game Column -->
 
         <!-- Info/Credit Column -->
         <div id="info-column">
@@ -62,7 +79,7 @@
                 <p class="credit">Game created by Sabit Hasan</p>
             </div>
         </div>
-    </div>
+    </div> <!-- End Content Wrapper -->
 
     <!-- Hidden elements managed by JS (positioned fixed) -->
     <div id="leaderboardPanel" style="display: none;"></div>
