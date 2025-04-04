@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(`Submitting score ${gameState.score} for player ${name}...`);
         try {
             // *** Adjust this URL if your backend is hosted elsewhere ***
-            const apiUrl = 'http://localhost:3000/api/leaderboard'; // URL of your backend endpoint
+            const apiUrl = 'https://flappy-bird-backend-nw51.onrender.com/api/leaderboard'; // URL of your backend endpoint
 
             const response = await fetch(apiUrl, {
                 method: 'POST',
