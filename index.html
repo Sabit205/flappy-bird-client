@@ -3,7 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flappy Bird</title>
+
+    <!-- SEO: Improved Title -->
+    <title>Play Flappy Bird Online Free - mythicempire.fun</title>
+
+    <!-- SEO: Meta Description -->
+    <meta name="description" content="Play the classic Flappy Bird game online for free at mythicempire.fun. Tap to flap, avoid the pipes, challenge the leaderboard, and chase your high score!">
+
+    <!-- SEO: Meta Keywords (Optional) -->
+    <meta name="keywords" content="flappy bird, play flappy bird, flappy bird online, free game, browser game, html5 game, online game, tap game, mythicempire.fun">
+
+    <!-- SEO: Canonical URL -->
+    <link rel="canonical" href="https://mythicempire.fun/index.html">
+
+    <!-- SEO: Open Graph Tags (for Social Media Sharing) -->
+    <meta property="og:title" content="Play Flappy Bird Online Free - mythicempire.fun">
+    <meta property="og:description" content="Tap to flap and guide the bird through the pipes in this classic addictive browser game. Challenge the leaderboard!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mythicempire.fun/index.html">
+    <meta property="og:image" content="https://mythicempire.fun/flappybird.png">
+
+    <!-- SEO: Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Play Flappy Bird Online Free - mythicempire.fun">
+    <meta name="twitter:description" content="Tap to flap and guide the bird through the pipes in this classic addictive browser game. Challenge the leaderboard!">
+    <meta name="twitter:image" content="https://mythicempire.fun/flappybird.png">
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 
     <!-- Favicon Links -->
@@ -45,60 +71,62 @@
     </div>
     <!-- ======== END AD CONTAINER (300x250) ======== -->
 
-<!-- ======== START AD CONTAINER (300x250 - Top Right Rectangle) ======== -->
-<div id="ad-top-right-rect2" class="ad-container"> <!-- New ID for CSS -->
-    <!-- 300x250 Ad Code -->
-    <script type="text/javascript">
-       atOptions = {
-           'key' : '10d4fd2119affee77a07ba130e5c8942',
-           'format' : 'iframe',
-           'height' : 250,
-           'width' : 300,
-           'params' : {}
-       };
-   </script>
-   <script type="text/javascript" src="//www.highperformanceformat.com/10d4fd2119affee77a07ba130e5c8942/invoke.js"></script>
-</div>
-<!-- ======== END AD CONTAINER (300x250) ======== -->
+    <!-- ======== START AD CONTAINER (300x250 - Top Right Rectangle 2) ======== -->
+    <div id="ad-top-right-rect2" class="ad-container"> <!-- New ID for CSS -->
+        <!-- 300x250 Ad Code -->
+        <script type="text/javascript">
+           atOptions = {
+               'key' : '10d4fd2119affee77a07ba130e5c8942',
+               'format' : 'iframe',
+               'height' : 250,
+               'width' : 300,
+               'params' : {}
+           };
+       </script>
+       <script type="text/javascript" src="//www.highperformanceformat.com/10d4fd2119affee77a07ba130e5c8942/invoke.js"></script>
+    </div>
+    <!-- ======== END AD CONTAINER (300x250) ======== -->
+
     <!-- Loading Animation -->
     <div id="loader">
         <div class="spinner"></div>
         <p>Loading Game Assets...</p>
     </div>
 
-    <!-- Main Content Area (Hidden until loaded) -->
-    <div id="content-wrapper" style="display: none;">
+    <!-- SEO: Changed div to main -->
+    <main id="content-wrapper" style="display: none;">
 
         <!-- This column now just groups the game and info panel for layout -->
         <div id="main-content-column">
             <!-- Game Column -->
             <div id="game-column">
                 <div id="game-container">
-                    <canvas id="gameCanvas"></canvas> <!-- Width/Height set by JS -->
+                    <canvas id="gameCanvas"></canvas> <!-- Search engines cannot read canvas well -->
                     <div class="score-container">
                         <div id="currentScore"></div>
                     </div>
                     <!-- Buttons positioned relative to game-container -->
-                    <img id="leaderboard" src="leaderboard.png" class="game-button" alt="View Leaderboard">
-                    <img id="restartBtn" src="restart.png" class="game-button" alt="Restart Game">
-                    <img id="pauseBtn" src="pause.png" class="game-button" alt="Pause/Resume Game">
-                    <img id="addToLeaderboard" src="add to leaderboard.png" class="game-button" alt="Add Score to Leaderboard">
+                    <img id="leaderboard" src="leaderboard.png" class="game-button" alt="View Leaderboard"> <!-- Alt text is good -->
+                    <img id="restartBtn" src="restart.png" class="game-button" alt="Restart Game"> <!-- Alt text is good -->
+                    <img id="pauseBtn" src="pause.png" class="game-button" alt="Pause/Resume Game"> <!-- Alt text is good -->
+                    <img id="addToLeaderboard" src="add to leaderboard.png" class="game-button" alt="Add Score to Leaderboard"> <!-- Alt text is good -->
                     <!-- Game Over Overlay will be appended here by JS -->
                 </div>
             </div>
 
-            <!-- Info/Credit Column (Positioning handled by CSS) -->
-            <div id="info-column">
+             <!-- SEO: Changed div to aside -->
+            <aside id="info-column">
                 <div id="info-panel">
-                    <h2>Flappy Bird</h2>
+                    <!-- SEO: Changed h2 to h1 -->
+                    <h1>Flappy Bird</h1>
                     <p>Play Flappy Bird online for free! Tap the screen or press the spacebar to start. Guide the bird through the pipes and see how far you can go. Try to beat your high score!</p>
                     <hr>
                     <p class="credit">Game created by Sabit Hasan</p>
                 </div>
-            </div>
+            </aside>
         </div> <!-- End main-content-column -->
 
-    </div> <!-- End content-wrapper -->
+    </main> <!-- End content-wrapper -->
 
 
     <!-- ======== START AD CONTAINER (728x90 - Centered Leaderboard Below) ======== -->

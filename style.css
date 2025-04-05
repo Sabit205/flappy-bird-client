@@ -8,158 +8,85 @@
 html, body {
     width: 100%;
     height: 100%;
-    /* Allow scrolling vertically ONLY when needed */
     overflow-y: auto;
     overflow-x: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #222831; /* Dark background */
-    color: #eeeeee; /* Light text */
+    background-color: #222831;
+    color: #eeeeee;
 }
 
 body {
     display: flex;
-    flex-direction: column; /* Stack content and bottom ad vertically */
-    justify-content: flex-start; /* Align top content to top */
-    align-items: center; /* Center items horizontally */
-    min-height: 100vh;
-    padding: 10px 0; /* Vertical padding */
-    position: relative; /* Needed for absolute positioning of top ads */
-}
-
-/* --- Loader Styles --- */
-#loader {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #222831; /* Match body */
-    z-index: 1000;
-    color: #eeeeee;
-}
-
-.spinner {
-    border: 6px solid #444; /* Darker border */
-    border-top: 6px solid #4CAF50; /* Green accent */
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1.5s linear infinite;
-    margin-bottom: 20px;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-#loader p {
-    font-size: 1.2em;
-}
-
-/* --- Layout --- */
-/* This wrapper holds ONLY game and info column */
-#content-wrapper {
-    display: flex; /* Use flex to help center */
-    justify-content: center; /* Center the main-content-column */
-    align-items: flex-start; /* Align elements to top */
-    position: relative; /* Context for absolute info-column */
-    width: auto; /* Size based on content */
-    max-width: 95%; /* Prevent touching screen edges */
-    padding: 10px 0; /* Vertical padding */
-    /* Removed large top margin - absolute ad doesn't push content */
-    margin-top: 15px; /* Keep some space from top */
-    /* border: 1px dashed cyan; */ /* Debugging */
-}
-
-/* Column holding ONLY the game AND info panel logic */
-#main-content-column {
-    display: flex; /* Use flex just to contain */
-    flex-direction: column; /* Stack game/info */
-    align-items: center; /* Center game within this column */
-    flex-shrink: 0;
-    position: relative; /* New context for info panel */
-    /* border: 1px dashed lime; */ /* Debugging */
-}
-
-#game-column {
-    flex-shrink: 0;
-    /* border: 1px solid green; */ /* Debugging */
-}
-
-#game-container {
+    min-height: 100vh;
+    padding: 10px 0;
     position: relative;
-    width: 400px;
-    height: 600px;
-    overflow: hidden;
-    border: 2px solid #393E46; /* Slightly lighter border */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    background-color: #70c5ce; /* Default canvas bg */
-    border-radius: 4px;
-    margin: 0 auto; /* Ensure game container is centered in its column */
 }
 
-canvas#gameCanvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    z-index: 1;
-    image-rendering: pixelated; /* Keep pixels sharp */
-    image-rendering: crisp-edges; /* Broader compatibility */
-}
+/* Loader Styles */
+#loader { display: flex; flex-direction: column; justify-content: center; align-items: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #222831; z-index: 1000; color: #eeeeee; }
+.spinner { border: 6px solid #444; border-top: 6px solid #4CAF50; border-radius: 50%; width: 50px; height: 50px; animation: spin 1.5s linear infinite; margin-bottom: 20px; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+#loader p { font-size: 1.2em; }
 
-/* --- Info Column - Positioned Absolutely relative to #main-content-column --- */
-#info-column {
-    position: absolute;
-    top: 60px; /* Adjust vertical offset as needed */
-    /* Position relative to the #main-content-column which holds the game */
-    left: calc(100% + 20px); /* Place 20px to the right of the game column */
-    width: 300px;
-    max-width: 300px;
-    height: auto;
-    /* border: 1px solid red; */ /* Debugging */
-    z-index: 10;
-}
+/* Layout */
+#content-wrapper { display: flex; justify-content: center; align-items: flex-start; position: relative; width: auto; max-width: 95%; padding: 10px 0; margin-top: 15px; }
+#main-content-column { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; position: relative; }
+#game-column { flex-shrink: 0; }
+#game-container { position: relative; width: 400px; height: 600px; overflow: hidden; border: 2px solid #393E46; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); background-color: #70c5ce; border-radius: 4px; margin: 0 auto; }
+canvas#gameCanvas { display: block; width: 100%; height: 100%; cursor: pointer; z-index: 1; image-rendering: pixelated; image-rendering: crisp-edges; }
 
-#info-panel {
-    background-color: rgba(57, 62, 70, 0.5); /* Semi-transparent dark */
-    padding: 25px;
-    border-radius: 6px;
-    color: #eeeeee;
-    border: 1px solid #4CAF50; /* Green border */
-    height: auto; /* Height determined by content */
-}
-
+/* Info Column */
+#info-column { position: absolute; top: 60px; left: calc(100% + 20px); width: 300px; max-width: 300px; height: auto; z-index: 10; }
+#info-panel { background-color: rgba(57, 62, 70, 0.5); padding: 25px; border-radius: 6px; color: #eeeeee; border: 1px solid #4CAF50; height: auto; }
 #info-panel h2 { margin-top: 0; margin-bottom: 18px; color: #4CAF50; text-align: center; font-size: 1.7em; font-weight: bold; }
 #info-panel p { line-height: 1.6; margin-bottom: 12px; font-size: 1em; }
 #info-panel hr { border: 0; height: 1px; background-color: #4CAF50; opacity: 0.5; margin: 18px 0; }
 #info-panel .credit { font-size: 0.9em; text-align: center; opacity: 0.8; margin-top: 25px; }
 
-/* --- Buttons and Overlays --- */
+/* ======================================== */
+/* === BASE Button & Overlay Styles === */
+/* ======================================== */
 .game-button { position: absolute; cursor: pointer; display: none; image-rendering: pixelated; image-rendering: crisp-edges; object-fit: contain; z-index: 4; border: none; background: none; padding: 0; transition: transform 0.1s ease-out, filter 0.1s ease-out; }
 .game-button:hover { transform: scale(1.05); filter: brightness(1.1); }
 .game-button:active { transform: scale(0.97); }
+
 #leaderboard { top: 15px; left: 15px; width: 110px; height: auto; }
 #pauseBtn { top: 15px; right: 15px; width: 35px; height: auto; }
-#restartBtn { width: 100px; height: auto; /* JS */ }
-#addToLeaderboard { width: 170px; height: auto; /* JS */ }
+
+#restartBtn { width: 100px; height: auto; position: absolute; bottom: 160px; left: 50%; transform: translateX(-0%); top: auto; }
+#addToLeaderboard { width: 170px; height: auto; position: absolute; bottom: 110px; left: 50%; transform: translateX(-2%); top: auto; }
+
+/* === START: Updated BASE Game Over Overlay Styles (Using Mobile values) === */
+#gameOverOverlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; color: white; font-family: Arial, sans-serif; padding: 20px; box-sizing: border-box; pointer-events: none; }
+#gameOverOverlay .score-display-box {
+    text-align: center;
+    margin-top: 25%; /* From Mobile */
+    margin-bottom: 30%; /* From Mobile */
+    pointer-events: auto;
+    width: auto;
+}
+#gameOverOverlay .score-line {
+    margin-bottom: 0px; /* From Mobile */
+    min-height: 82px;   /* From Mobile */
+    line-height: 36px;  /* From Mobile */
+    white-space: nowrap;
+}
+#gameOverOverlay .score-line:last-child {
+    margin-top: 0;      /* From Mobile */
+    margin-bottom: 0;   /* From Mobile */
+}
+#gameOverOverlay .score-line span { display: none; }
+#gameOverOverlay img.score-digit { width: 24px; height: 36px; margin: 0 2px; image-rendering: pixelated; image-rendering: crisp-edges; display: inline-block; vertical-align: middle; }
+/* === END: Updated BASE Game Over Overlay Styles === */
+
+
 .score-container { position: absolute; top: 25px; left: 50%; transform: translateX(-50%); width: auto; text-align: center; z-index: 2; pointer-events: none; }
 .score-digit { width: 24px; height: 36px; margin: 0 1px; image-rendering: pixelated; image-rendering: crisp-edges; display: inline-block; vertical-align: middle; }
 
-/* Game Over Overlay */
-#gameOverOverlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; /* background-color: rgba(0, 0, 0, 0.15); */ /* Black tone removed */ z-index: 3; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; color: white; font-family: Arial, sans-serif; padding: 20px; box-sizing: border-box; pointer-events: none; }
-#gameOverOverlay .score-display-box { text-align: center; margin-top: 140px; /* Moved up */ margin-bottom: 170px; pointer-events: auto; width: auto; }
-#gameOverOverlay .score-line { margin-bottom: 16px; min-height: 36px; line-height: 36px; white-space: nowrap; }
-#gameOverOverlay .score-line:last-child { margin-bottom: 0; }
-#gameOverOverlay .score-line span { display: none; }
-#gameOverOverlay img.score-digit { width: 24px; height: 36px; margin: 0 2px; image-rendering: pixelated; image-rendering: crisp-edges; display: inline-block; vertical-align: middle; }
-
-/* --- Popups (Fixed Positioning) --- */
+/* Popups (Fixed Positioning) */
 #nameInput { display: none; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); background: #393E46; padding: 30px; color: #eeeeee; border-radius: 8px; text-align: center; z-index: 5; width: 90%; max-width: 320px; border: 1px solid #4CAF50; box-shadow: 0 5px 18px rgba(0, 0, 0, 0.5); }
 #nameInput input[type="text"] { margin: 18px 0; padding: 12px; width: 90%; border: 1px solid #555; border-radius: 4px; font-size: 1.1em; background-color: #222831; color: #eee; }
 #nameInput input[type="text"]::placeholder { color: #aaa; }
@@ -169,153 +96,105 @@ canvas#gameCanvas {
 #toast-notification.success { background-color: #4CAF50; }
 #toast-notification.error { background-color: #d9534f; }
 
+/* AD STYLING */
+.ad-container { margin: 0; padding: 0; line-height: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+#ad-top-left-leaderboard { position: absolute; top: 10px; left: 10px; width: 160px; height: 600px; min-height: 600px; z-index: 15; display: flex; }
+#ad-top-right-rect { position: absolute; top: 10px; left: 180px; width: 300px; height: 250px; min-height: 250px; z-index: 15; display: flex; }
+#ad-top-right-rect2 { position: absolute; top: 280px; left: 180px; width: 300px; height: 250px; min-height: 250px; z-index: 15; display: flex; }
+#ad-center-skyscraper { width: 728px; max-width: 100%; min-height: 90px; height: fit-content; margin: 25px auto; order: 3; display: flex; }
 
 /* ============================ */
-/* ===== AD STYLING START ===== */
+/* === RESPONSIVE STYLES START === */
 /* ============================ */
 
-.ad-container {
-    margin: 0;
-    padding: 0;
-    line-height: 0; /* Helps remove extra space below iframe */
-    overflow: hidden; /* Hide potential overflow */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* border: 1px dotted red; */ /* Debug */
-}
-
-/* --- Desktop Ad Positioning --- */
-
-/* Top Left 160x600 Ad */
-#ad-top-left-leaderboard { /* ID holds skyscraper */
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 160px;
-    height: 600px;
-    min-height: 600px;
-    z-index: 15;
-}
-
-/* Top Right 300x250 Ad (Upper) */
-#ad-top-right-rect { /* Holds upper 300x250 */
-    position: absolute;
-    top: 36px;  /* Align with top of skyscraper */
-    left: 174px; /* 10px (body padding left) + 160px (skyscraper width) + 10px (gap) */
-    width: 300px;
-    height: 250px;
-    min-height: 250px;
-    z-index: 15;
-}
-
-/* Top Right 300x250 Ad (Lower) */
-#ad-top-right-rect2 {
-    position: absolute;
-    top: 280px; /* 10px (top spacing) + 250px (upper ad height) + 20px (gap) */
-    left: 174px; /* Same horizontal position as upper ad */
-    width: 300px;
-    height: 250px;
-    min-height: 250px;
-    z-index: 15;
-}
-
-/* Centered 728x90 Leaderboard (Below Game) */
-#ad-center-skyscraper { /* Holds leaderboard */
-    width: 728px;
-    max-width: 100%;
-    min-height: 90px;
-    height: fit-content;
-    margin: 25px auto;
-    order: 3; /* Default order (will be overridden on mobile) */
-}
-
-
-/* ============================ */
-/* === RESPONSIVE AD STYLES === */
-/* ============================ */
-
-/* Tablet / Smaller Desktop - Hide Top Ads, Stack info panel */
+/* == TABLET STYLES (e.g., <= 1050px) == */
 @media (max-width: 1050px) {
-    #content-wrapper {
-        margin-top: 15px;
-    }
-
-    /* Hide ALL top ads */
-    #ad-top-left-leaderboard,
-    #ad-top-right-rect,
-    #ad-top-right-rect2 {
-         display: none;
-    }
-
-    #info-column {
-        position: static; /* Stack below game */
-        width: 100%;
-        max-width: 400px;
-        margin-top: 25px; /* Add space between game and info */
-        order: 2;
-    }
-
+    #content-wrapper { margin-top: 15px; }
+    #ad-top-left-leaderboard, #ad-top-right-rect, #ad-top-right-rect2 { display: none !important; }
+    #info-column { position: static; width: 100%; max-width: 400px; margin-top: 25px; order: 2; }
     #game-column { order: 1; }
     #main-content-column { align-items: center; }
     #game-container { width: 400px; height: 600px; max-width: 100%; }
+    #ad-center-skyscraper { display: flex !important; order: 3; margin: 25px auto; }
 
-    /* Keep the bottom Leaderboard visible */
-    #ad-center-skyscraper { /* Contains 728x90 */ }
+    /* --- Tablet Game Over Overlay Styles --- */
+    /* Override base if needed */
+    #gameOverOverlay .score-display-box {
+        margin-top: 180px !important; /* Example override for tablet */
+        margin-bottom: 150px !important; /* Example override for tablet */
+    }
+    #gameOverOverlay .score-line {
+         margin-bottom: 36px !important;
+         min-height: 15px !important; /* Example override for tablet */
+         line-height: 45px !important;
+    }
+    #gameOverOverlay .score-line:last-child { margin-top: 10px !important; margin-bottom: 0 !important; } /* Example override for tablet */
+    #gameOverOverlay .score-line span { display: none !important; }
+    #gameOverOverlay img.score-digit { width: 24px !important; height: 36px !important; margin: 0 2px !important; image-rendering: pixelated !important; image-rendering: crisp-edges !important; display: inline-block !important; vertical-align: middle !important; }
+
+    /* --- Tablet Game Button Styles --- */
+    #game-container #pauseBtn { top: 15px !important; right: 15px !important; width: 30px !important; height: auto !important; }
+    #game-container #restartBtn { width: 100px !important; position: absolute !important; bottom: 120px !important; left: 50% !important; transform: translateX(-50%) !important; top: auto !important; }
+    #game-container #addToLeaderboard { width: 170px !important; position: absolute !important; bottom: 70px !important; left: 50% !important; transform: translateX(-50%) !important; top: auto !important; }
 }
 
-/* Mobile - Hide Top Skyscraper & 2nd Rect, Show Leaderboard & 1st Rect */
+/* == MOBILE STYLES (e.g., <= 760px) == */
 @media (max-width: 760px) {
-     /* Hide the Skyscraper Ad and the second rectangle ad */
-     #ad-top-left-leaderboard, /* Contains 160x600 */
-     #ad-top-right-rect2 { /* Contains lower 300x250 */
-        display: none;
-     }
-
-     /* SHOW the Leaderboard Ad (originally centered below) */
-     #ad-center-skyscraper { /* Contains 728x90 */
-        display: flex; /* Ensure it's visible */
-        position: static;
-        margin: 25px auto 15px auto; /* Center it, space below */
-        order: 3; /* Comes after content-wrapper */
-     }
-
-     /* SHOW the first Rectangle Ad (originally top-right) */
-     #ad-top-right-rect { /* Contains 300x250 */
-        display: flex; /* Make it visible again */
-        position: static; /* Position in normal flow */
-        margin: 0 auto 25px auto; /* Center it, space below it */
-        order: 4; /* Comes AFTER the leaderboard ad */
-        /* Width/Height are correct from base rule */
-     }
-
+     #ad-top-left-leaderboard, #ad-top-right-rect2 { display: none !important; }
+     #ad-center-skyscraper { display: flex !important; position: static; margin: 25px auto 15px auto; order: 3; }
+     #ad-top-right-rect { display: flex !important; position: static; margin: 0 auto 25px auto; order: 4; }
      #content-wrapper { margin-top: 15px; flex-direction: column; align-items: center; }
      #main-content-column { width: 100%; order: 1; }
      #game-container { width: 90vw; height: calc(90vw * 1.5); max-width: 400px; max-height: 600px; }
-     #info-column { max-width: 90vw; width: 100%; }
+     #info-column { max-width: 90vw; width: 100%; order: 2; position: static; margin-top: 25px;}
+
+    /* --- Mobile Game Over Overlay Styles --- */
+    /* Keep original mobile overrides (same as new base, but explicit) */
+    #gameOverOverlay .score-display-box {
+        margin-top: 25% !important;
+        margin-bottom: 30% !important;
+    }
+     #gameOverOverlay .score-line {
+         margin-bottom: 0px !important;
+         min-height: 80px !important; /* Kept previous mobile value */
+         line-height: 36px !important;
+     }
+     #gameOverOverlay .score-line:last-child { margin-top: 0 !important; margin-bottom: 0 !important; }
+    #gameOverOverlay .score-line span { display: none !important; }
+    #gameOverOverlay img.score-digit { width: 24px !important; height: 36px !important; margin: 0 2px !important; image-rendering: pixelated !important; image-rendering: crisp-edges !important; display: inline-block !important; vertical-align: middle !important; }
+
+    /* --- Mobile Game Button Styles --- */
+    #game-container #pauseBtn { top: 10px !important; right: 10px !important; width: 30px !important; height: auto !important; }
+    #game-container #restartBtn { width: 90px !important; position: absolute !important; bottom: 20% !important; left: 50% !important; transform: translateX(-50%) !important; top: auto !important; }
+    #game-container #addToLeaderboard { width: 150px !important; position: absolute !important; bottom: 12% !important; left: 50% !important; transform: translateX(-50%) !important; top: auto !important; }
 }
 
-/* Very small screens - Further refine game/info size */
+/* == SMALL MOBILE STYLES (e.g., <= 480px) == */
 @media (max-width: 480px) {
      #game-container { width: 95vw; height: calc(95vw * 1.5); max-width: 340px; max-height: 510px; }
      #info-column { max-width: 95vw; }
      #info-panel h2 { font-size: 1.5em; }
      #info-panel p { font-size: 0.9em; }
+     #ad-center-skyscraper, #ad-top-right-rect { width: 95%; max-width: 95%; }
+     #ad-top-left-leaderboard, #ad-top-right-rect2 { display: none !important; }
 
-     /* Adjust ad widths if needed */
-     #ad-center-skyscraper, /* 728x90 container */
-     #ad-top-right-rect { /* 300x250 container */
-         width: 95%;
-         max-width: 95%;
-     }
-     /* Ensure the lower rect ad remains hidden */
-     #ad-top-right-rect2 {
-        display: none;
-     }
+    /* --- Small Mobile Game Over Overlay Styles --- */
+    /* Keep original small mobile overrides or adjust */
+    #gameOverOverlay .score-display-box {
+        margin-top: 22% !important;
+        margin-bottom: 28% !important;
+    }
+    #gameOverOverlay .score-line {
+        margin-bottom: 0px !important;
+        min-height: 80px !important; /* Kept previous small mobile value */
+        line-height: 36px !important;
+    }
+    #gameOverOverlay .score-line:last-child { margin-top: 0 !important; margin-bottom: 0 !important; }
+    #gameOverOverlay .score-line span { display: none !important; }
+    #gameOverOverlay img.score-digit { width: 24px !important; height: 31px !important; margin: 0 2px !important; image-rendering: pixelated !important; image-rendering: crisp-edges !important; display: inline-block !important; vertical-align: middle !important; }
 
-     /* Copied from original for completeness */
-     #gameOverOverlay .score-display-box { padding: 0; margin-top: 22%; margin-bottom: 28%;}
-     #gameOverOverlay .score-line { margin-bottom: 10px; }
-     .game-button { transform: scale(0.9); }
-     .game-button:hover { transform: scale(0.95); }
+    /* --- Small Mobile Game Button Styles --- */
+    #game-container #pauseBtn { top: 10px !important; right: 10px !important; width: 28px !important; height: auto !important; }
+    #game-container #restartBtn { width: 80px !important; position: absolute !important; bottom: 21% !important; left: 50% !important; transform: translateX(-50%) scale(0.9) !important; transform-origin: center bottom !important; top: auto !important; }
+    #game-container #addToLeaderboard { width: 140px !important; position: absolute !important; bottom: 14% !important; left: 50% !important; transform: translateX(-50%) scale(0.9) !important; transform-origin: center bottom !important; top: auto !important; }
 }
